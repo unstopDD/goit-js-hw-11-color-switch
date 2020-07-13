@@ -28,9 +28,11 @@ const randomColor = {
       return;
     }
 
+    refs.startBtn.disabled = true;
     this.isActive = true;
     this.intervalId = setInterval(() => {
-      const randomColorIndex = colors[randomIntegerFromInterval(0, 5)];
+      const randomColorIndex =
+        colors[randomIntegerFromInterval(0, colors.length - 1)];
       refs.body.style.backgroundColor = randomColorIndex;
       console.log(randomColorIndex);
     }, 1000);
@@ -38,6 +40,7 @@ const randomColor = {
 
   stop() {
     clearInterval(this.intervalId);
+    refs.startBtn.disabled = false;
     this.isActive = false;
     this.intervalId = null;
     console.clear();
